@@ -4,9 +4,13 @@
 
 # 左值与右值
 
+
+
 ## 前言
 
 本文章是为了补充某大学某专业的程序设计课程而写，因此内容可能较为浅薄，请读者见谅。  
+
+
 
 ## 什么是左值与右值
 
@@ -38,6 +42,8 @@ C++98 则有对右值的阐述。其对左右值的阐述则是这样的（ISO/I
 一般来说，整数和浮点数的[字面量（literal）](https://zh.cppreference.com/w/cpp/language/expressions#.E5.AD.97.E9.9D.A2.E9.87.8F)是右值，例如 `5`、`3.14`，等等。[临时对象](https://zh.cppreference.com/w/cpp/language/lifetime#.E4.B8.B4.E6.97.B6.E5.AF.B9.E8.B1.A1.E7.9A.84.E7.94.9F.E5.AD.98.E6.9C.9F)是右值，例如 `std::string("Ohh")`。函数的返回值，若不是（左值）引用，也是右值，例如一个函数 `int func()`，调用 `func()` 后，其返回值是右值。但是，若返回值是一个左值引用，则是左值。例如 `int& func()`，则 `func()` 的返回值是左值。（左值）引用是对一个真正存在的对象的引用，也就是对装着值的“盒子”本身的引用。如此看来，它是一个左值也就理所当然了。  
 
 当然也有例外，例如在 C 和 C++ 中，[字符串字面量（string literal）](https://zh.cppreference.com/w/cpp/language/string_literal)，如 `"Hello, world!"`，被规定为左值；在 C99 以后，复合字面量（compound literal）被规定为左值，等等。  
+
+
 
 ## C++11
 
