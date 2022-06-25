@@ -109,7 +109,7 @@ int main() {
 
 返回值优化能够保证，对于我们上述的代码，**只在 `GetFoo` 函数内进行一次默认构造，并不会进行任何的复制构造**。也就是说，程序中**运行全程只有一次对象构造**。  
 
-对于 GCC、Clang、MSVC（使用 Visual Studio 的 Debug 或 Release 默认配置，即 `/Od` 及以上）来说，返回值优化是默认开启的。对于前两者，我们可以通过加上 `-fno-elide-constructors` 来禁止返回值优化，而对于 MSVC 来说，[没有任何办法禁止返回值优化](https://social.microsoft.com/Forums/Windows/zh-CN/a5f9ccf7-c734-4e9a-8174-ee722ff7a1dd/how-to-disable-return-value-optimization-in-vs)。但是，通常情况下，我们没有理由禁止返回值优化。  
+对于 GCC、Clang、MSVC（使用 Visual Studio 的 Debug 或 Release 默认配置，即 `/Od` 及以上）来说，返回值优化是默认开启的。对于前两者，我们可以通过加上 `-fno-elide-constructors` 来禁止返回值优化；而对于 MSVC 来说，[没有任何办法禁止返回值优化](https://social.microsoft.com/Forums/Windows/zh-CN/a5f9ccf7-c734-4e9a-8174-ee722ff7a1dd/how-to-disable-return-value-optimization-in-vs)。但是，通常情况下，我们没有理由禁止返回值优化。  
 
 但是需要注意的是，返回值优化是编译器自己的优化而非 C++98/03 标准要求。因此，下面的代码是错误的：  
 
