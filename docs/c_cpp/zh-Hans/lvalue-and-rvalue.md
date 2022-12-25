@@ -6,38 +6,43 @@
 
 ## 前言
 
-本文章是为了补充某大学某专业的程序设计课程而写，因此内容可能较为浅薄，请读者见谅。  
+本文章是为了补充某大学某专业的程序设计课程而写，因此内容可能较为浅薄，请读者见谅。
 
 ## 什么是左值与右值
 
-**左值**（lvalue）是 C 语言即存在的概念，与之相对的通常称为**右值**（rvalue），C++ 在一定程度上也继承了 C 语言对这一概念的阐述。那么，什么是左值和右值呢？  
+**左值**（lvalue）是 C 语言即存在的概念，与之相对的通常称为**右值**（rvalue），C 语言称为**非左值**（non-lvalue）。而 C++ 在一定程度上也继承了 C 语言对这一概念的阐述。
 
-我们先来窥探一下左值和右值名称的由来。“左值”，最初的名称由来是该值放在赋值号的左边，而“右值”是放在赋值号的右边。但是现在通过赋值号左右判断左右值已经不准确了。有一种说法是，能够取地址的是左值，不能取地址的是右值。但这种说法太过结果化，不能体现左值和右值的定义。
+首先，需要注意的是，“左值”和“右值”都是表达式（expression）具有的的属性。因此，我们说“左值”还是“右值”都是针对于表达式而言的。一旦脱离了表达式，我们就无从讨论“左值”与“右值”。
 
-我们暂不考虑 C++11 及以后的定义（之后将会看到 C++11 及以后，对值的分类进行了扩展）。我们先来考虑 C 和 C++98/03 的定义。C 语言标准中的“左值”定义自 C89 起便没有太大变化。C11 中是这样定义的（ISO/IEC 9899: 2011）：  
+我们先来窥探一下左值和右值名称的由来。“左值”，最初的名称由来是该表达式放在赋值号的左边，而“右值”是放在赋值号的右边。但是现在通过赋值号左右判断左右值已经不准确了。有一种说法是，能够取地址的表达式是左值，不能取地址的表达式是右值。但这种说法太过结果化，不能体现左值和右值的定义。
+
+我们先来考虑 C 语言的定义。C 语言标准中的“左值”定义自 C89 起便没有太大变化。C11 中是这样定义的（ISO/IEC 9899: 2011）：
 
 > **6.3.2.1 Lvalues, arrays, and function designators**
 >
-> An *lvalue* is an expression (with an object type other than void) that potentially designates an object.
+> 1. An *lvalue* is an expression (with an object type other than void) that potentially designates an object.
 
-对于“右值”，C 语言标准并没有给出明确定义，只是在该页做了脚注：  
+对于“右值”，C 语言标准并没有给出明确定义，只是在该页做了脚注：
 
 > 69) ... What is sometimes called ‘‘rvalue’’ is in this International Standard described as the ‘‘value of an expression’’.
 
-C++98 则有对右值的阐述。其对左右值的阐述则是这样的（ISO/IEC 14882: 1998）：  
+通过以上定义可以看出，简单但不严谨地说，所谓“左值”，主要是指该表达式的求值结果是一个对象本身存在的“实体”，否则该表达式就是右值。如果更加形象通俗一点地说，一个变量（注意 C 语言中没有严格定义”变量“的概念，可以简单将 C 语言的“变量”理解成“对象”，从而不影响这种表述也适用于 C 语言）可以看作是一个“盒子”，里面装着这个变量所储存的“内容”。而“左值”则指的是该表达式的结果是这个“盒子”本身，而“右值”则指的是表达式的结果是“盒子”里装着的“内容”。
 
-> **3.10 Lvalues and rvalues**
+例如，`int x = 5;` 定义了一个变量 `x`，这个 `x` 就成为了一个“盒子”，里面装着“5”这样一个“内容”。因此，我们可以对 `x` 进行赋值等操作，例如赋值语句 `x = 8` 中，`=` 左侧的表达式 `x` 就是一个左值表达式，即该表达式的求值结果指的是 `x` 这个“盒子”，而非 `x` 装的”内容“ `5`。而 `8` 则是一个右值表达式，因为我们并没有创建任何的存储 `8` 这个内容的”盒子“。
+
+当然以上说法并不是完全准确，也是存在例外的。C 语言存在特别规定：
+
+> **6.2.4 Storage durations of objects**
 >
-> 1. Every expression is either an *lvalue* or an *rvalue*.
-> 2. An lvalue refers to an object or function. Some rvalue expressions—those of class or cv-qualified class type—also refer to objects 49).
+> 8. A non-lvalue expression with structure or union type, where the structure or union contains a member with array type (including, recursively, members of all contained structures and unions) refers to an object with automatic storage duration and *temporary lifetime*. 36) Its lifetime begins when the expression is evaluated ...
 
-通过以上定义可以看出，简单但不严谨地说，在 C++ 中，所谓“左值”，主要是指一个对象本身存在的“实体”，否则就是右值。如果更加形象通俗一点地说，一个变量（注意 C 语言中不存在”变量“的概念，但不影响这种表述也适用于 C 语言）可以看作是一个“盒子”，里面装着这个变量的“值”。而“左值”指的是装着这个“盒子”本身，而“右值”则指的是“盒子”里装着的“值”。  
+也就是说，如果一个右值表达式的类型是一个结构体或联合体，且该结构体或联合体有数组作为其成员，则该右值表达式在求值时会产生一个具有临时生命周期的对象。
 
-例如，`int x = 5;` 定义了一个变量 `x`，这个 `x` 就成为了一个“盒子”，里面装着“5”这样一个值。因此，我们可以对 `x` 进行赋值等操作，例如赋值语句 `x = 8` 中，`=` 左侧的表达式 `x` 就是一个“左值”，即指的是 `x` 这个盒子，而非 `x` 装的值 `5`。而 `8` 显然，则是一个右值。 
+一般来说，整数和浮点数的[字面量](https://zh.cppreference.com/w/cpp/language/expressions#.E5.AD.97.E9.9D.A2.E9.87.8F)（literal）所直接构成的表达式是右值，例如 `5`、`3.14`，等等；C 语言中函数调用表达式都是右值，例如一个函数为 `int func(void)`，则 `func()` 表达式是右值；类型转换表达式都是右值；算术表达式、逻辑表达式、赋值表达式等一系列表达式都是右值，等等。
 
-一般来说，整数和浮点数的[字面量（literal）](https://zh.cppreference.com/w/cpp/language/expressions#.E5.AD.97.E9.9D.A2.E9.87.8F)是右值，例如 `5`、`3.14`，等等。[临时对象](https://zh.cppreference.com/w/cpp/language/lifetime#.E4.B8.B4.E6.97.B6.E5.AF.B9.E8.B1.A1.E7.9A.84.E7.94.9F.E5.AD.98.E6.9C.9F)是右值，例如 `std::string("Ohh")`。函数的返回值，若不是（左值）引用，也是右值，例如一个函数 `int func()`，调用 `func()` 后，其返回值是右值。但是，若返回值是一个左值引用，则是左值。例如 `int& func()`，则 `func()` 的返回值是左值。（左值）引用是对一个真正存在的对象的引用，也就是对装着值的“盒子”本身的引用。如此看来，它是一个左值也就理所当然了。  
+C++98 则相对更加复杂，并且与 C 语言有很多不同。例如，C++98 中，赋值表达式、复合赋值表达式（诸如 `x = 5`、`y += 3` 等）都是左值（指代被赋值的对象）；对于函数调用，若该函数的返回值是一个左值引用，则是左值。例如 `int& func()`，则表达式 `func()` 是左值。（左值）引用是对一个真正存在的对象的引用，也就是对装着值的“盒子”本身的引用。如此看来，它是一个左值也就理所当然了。
 
-当然也有例外，例如在 C 和 C++ 中，[字符串字面量（string literal）](https://zh.cppreference.com/w/cpp/language/string_literal)，如 `"Hello, world!"`，被规定为左值；在 C99 以后，复合字面量（compound literal）被规定为左值，等等。  
+当然以上所述均有例外，例如在 C 和 C++ 中，[字符串字面量](https://zh.cppreference.com/w/cpp/language/string_literal)（string literal），如 `"Hello, world!"`，都被规定为左值；在 C99 以后，复合字面量（compound literal）被规定为左值，等等。
 
 ### 左值到右值转换
 
@@ -45,6 +50,15 @@ C++98 则有对右值的阐述。其对左右值的阐述则是这样的（ISO/I
 
 ## C++11
 
-在 C++11 中，表达式的值的划分发生了变化。一个表达式可以分为：**左值**（lvalue）、**亡值**（xvalue）、**纯右值**（prvalue）。其中，左值和亡值合称为**泛左值**（glvalue），亡值和纯右值合称为**右值**（rvalue）。   
+在 C++11 中，表达式的值的划分发生了变化。一个表达式可以分为：**左值**（lvalue）、**亡值**（xvalue）、**纯右值**（prvalue）。其中，左值和亡值合称为**泛左值**（glvalue），亡值和纯右值合称为**右值**（rvalue）。 
 
-（未完待续）  
+（未完待续）
+
+## 参考文献
+
+1. ISO/IEC 9899: 2011
+2. ISO/IEC 14882: 1998
+3. ISO/IEC 14882: 2011
+4. <https://en.cppreference.com/>
+5. <https://zh.cppreference.com/>
+
