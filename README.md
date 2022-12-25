@@ -3,7 +3,7 @@ Timothy Liu's blogs
 
 ## License
 
-Copyright (C) 2022 Timothy-LiuXuefeng
+Copyright (C) 2022 Timothy Liu
 
 [CC BY-SA 4.0 license](./LICENSE.txt)
 
