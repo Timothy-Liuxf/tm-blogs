@@ -2,9 +2,8 @@
 
 ## Language
 
-+ [中文（简体）](./zh-Hans)
-+ [中文（繁體）](./zh-Hant)
-+ [English](./en)
-+ [Français](fr)
++ [中文（大陆简体）](./zh-CN)
++ [中文（台灣正體）](./zh-TW)
++ [English (United States)](./en-US)
++ [Français (France)](./fr-FR)
 + ……
-
