@@ -40,7 +40,7 @@
 
 一般來説，整數和浮點值的 [literal](https://zh.cppreference.com/w/c/language/expressions#.E5.B8.B8.E9.87.8F.E5.8F.8A.E5.AD.97.E9.9D.A2.E9.87.8F) 所直接構成的運算式是 rvalue，例如 `5`、`3.14`，等等；C 語言中函式呼叫運算式都是 rvalue，例如一個函式為 `int func(void)`，則 `func()` 運算式是 rvalue；類型轉換運算式都是 rvalue；算術運算式、邏輯運算式、指派運算式等一系列運算式都是 rvalue，等等。
 
-C++98 則相對更加複雜，并且與 C 語言有很多不同。例如，C++98 中，指派運算式、複合指派運算式（諸如 `x = 5`、`y += 3` 等）都是 lvalue（指代被指派的物件）；對於函式呼叫，若該函式的傳回值是一個左值參考，則是 lvalue。例如 `int& func()`，則運算式 `func()` 是 lvalue。（左值）參考是對一個真正存在的物件的參考，也就是對裝著值的“盒子”本身的參考。如此看來，它是一個 lvalue 也就理所當然了。
+C++98 則相對更加複雜，并且與 C 語言有很多不同。例如，C++98 中，指派運算式、複合指派運算式（諸如 `x = 5`、`y += 3` 等）都是 lvalue（指代被指派的物件）；對於函式呼叫運算式，若該函式的傳回值是一個左值參考，則是 lvalue。例如 `int& func()`，則運算式 `func()` 是 lvalue。（左值）參考是對一個真正存在的物件的參考，也就是對裝著值的“盒子”本身的參考。如此看來，它是一個 lvalue 也就理所當然了。
 
 當然以上所述均有例外。例如在 C 和 C++ 中，[字串常量](https://zh.cppreference.com/w/cpp/language/string_literal)（string literal），如 `"Hello, world!"`，都被規定為 lvalue；在 C99 以後，複合常量（compound literal）都被規定為 lvalue，等等
 
