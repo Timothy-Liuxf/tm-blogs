@@ -1,4 +1,4 @@
-# C and C++ blogs
+# Timothy Liu's blogs
 
 ## Language
 
