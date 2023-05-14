@@ -1,8 +1,8 @@
-<!-- Copyright (C) 2023 Timothy Liu -->
-
-<!-- CC BY-SA 4.0 license -->
-
 # 为什么 `const` 在 C++ 中是必要的
+
+> Copyright (C) 2023 Timothy Liu
+>
+> [Creative Commons — 署名-相同方式共享 4.0 国际 — CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-Hans) 许可证
 
 ## 前言
 
