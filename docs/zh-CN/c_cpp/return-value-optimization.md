@@ -148,7 +148,7 @@ int main() {
 
 这时，我们要引入一个新的概念：**具名返回值优化**（NRVO，Named Return Value Optimization）。这种优化允许具名对象充当 `return` 后的表达式时，同样能够进行优化，仅在该具名对象构造的位置进行一次构造，不会进行任何复制构造。  
 
-对于 GCC 和 Clang 来说，具名返回值优化是默认开启的，也可以使用 `-fno-elide-constructors` 来关闭。对于 MSVC 来说，当优化选项为 `/O1`、`/O2`、`/Ox` 时会开启具名返回值优化，而优化选项为 `/Od` 时则不会开启。  
+对于 GCC 和 Clang 来说，具名返回值优化是默认开启的，也可以使用 `-fno-elide-constructors` 来关闭。对于 MSVC 来说，在 Visual Studio 2022 17.4 之前，当优化选项为 `/O1`、`/O2`、`/Ox` 时会开启具名返回值优化，而优化选项为 `/Od` 时则不会开启；[自 Visual Studio 2022 17.4 起，只要开启了 `/Zc:nrvo`、`/std:c++20`、`/permissive-` 中的任何一个，则即使在 `/Od` 优化下也会开启具名返回值优化](https://learn.microsoft.com/zh-cn/visualstudio/releases/2022/release-notes-v17.4#summary-of-whats-new-in-this-release-of-visual-studio-2022-version-174)。  
 
 ## C++11 标准
 
