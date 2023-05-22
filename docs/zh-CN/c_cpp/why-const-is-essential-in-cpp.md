@@ -29,7 +29,7 @@ private:
 
 对于初学者，乍看一眼貌似只要过编译了就 OK。但是，这个设计实际上是漏洞百出的。
 
-首先，最显然的问题，我如果要定义一个 `const`  的 `Complex` 对象，不想让其修改，那么就可以这样写：
+首先，最显然的问题，我如果要定义一个 `const` 的 `Complex` 对象，不想让其被修改，那么就可以这样写：
 
 ```cpp
 const Complex zero(0.0, 0.0);
@@ -48,7 +48,7 @@ double cabs(Complex& z)
 }
 ```
 
-有一天我不是很爽，写了这样的代码调用这个函数：`cabs(Complex(0.0, 0.0))`。结果非常 Amazing 啊！编译错误（然而这东西在 VS2008 上貌似并不会编译错误，让我们不考虑 VS2008）。为什么呢？我们所说的传统意义上的”引用“，只能绑定到[左值](./lvalue-and-rvalue.md)（在 C++11 出现右值引用之后，原来的引用也被称作左值引用），而 `Complex(0.0, 0.0)` 这是个右值表达式，因此并没有办法被引用。那怎么改呢？一个方法是把参数改成 `Complex z`。但是如果对于一些其他的类型，复制其对象可能会引来很大的开销，或者是该类型的复制构造函数不可访问或[已经标记为删除](https://zh.cppreference.com/w/cpp/language/function#.E5.BC.83.E7.BD.AE.E5.87.BD.E6.95.B0)，因此我们还是希望参数为音乐。那么，`const` 就派上用场了。[对有 `const` 限定（但没有 `volatile` 限定）的类型的左值引用既可以绑定到左值，又可以绑定到右值](https://zh.cppreference.com/w/cpp/language/reference_initialization)。所以函数改为：
+有一天我不是很爽，写了这样的代码调用这个函数：`cabs(Complex(0.0, 0.0))`。结果非常 Amazing 啊！编译错误（然而这东西在 VS2008 上貌似并不会编译错误，让我们不考虑 VS2008）。为什么呢？我们所说的传统意义上的“引用”，只能绑定到[左值](./lvalue-and-rvalue.md)（在 C++11 出现右值引用之后，原来的引用也被称作左值引用），而 `Complex(0.0, 0.0)` 这是个右值表达式，因此并没有办法被引用。那怎么改呢？一个方法是把参数改成 `Complex z`。但是如果对于一些其他的类型，复制其对象可能会引来很大的开销，或者是该类型的复制构造函数不可访问或[已经定义为删除](https://zh.cppreference.com/w/cpp/language/function#.E5.BC.83.E7.BD.AE.E5.87.BD.E6.95.B0)，因此我们还是希望参数为引用。那么，`const` 就派上用场了。[对有 `const` 限定（但没有 `volatile` 限定）的类型的左值引用既可以绑定到左值，又可以绑定到右值](https://zh.cppreference.com/w/cpp/language/reference_initialization)。所以函数改为：
 
 ```c++
 double cabs(const Complex& z)
@@ -57,7 +57,7 @@ double cabs(const Complex& z)
 }
 ```
 
-但是现在问题又来了：对于对有 `const` 限定的类型的引用，只能调用其绑定对象的带有 `const` 限定的成员函数，而 `getReal` 和 `getImag` 两个成员函数并没有 `const` 限定，因此还是会编译报错。因此，`getReal` 和 `getImag` 也是要声明为有 `const` 限定的成员函数。
+但是现在问题又来了：对于有 `const` 限定的类型的引用，只能调用其绑定对象的带有 `const` 限定的成员函数，而 `getReal` 和 `getImag` 两个成员函数并没有 `const` 限定，因此还是会编译报错。因此，`getReal` 和 `getImag` 也是要声明为有 `const` 限定的成员函数。
 
 此外就是复制构造函数的问题。由于类似的原因，绝大多数复制构造函数的参数都是对带有 `const` 限定的类型的引用。
 
@@ -73,5 +73,6 @@ double cabs(const Complex& z)
 
 **未完待续……（继续鸽 x）**
 
-<!-- 常量表达式、常量折叠，等等 -->
+## 单一定义规则（ODR）与 odr-used
 
+**……**
