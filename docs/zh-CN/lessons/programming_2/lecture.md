@@ -461,11 +461,23 @@ private:
   2,3,3,4
   ```
 
-+ 经典写构造函数和析构函数执行顺序的题，sjs课件“C++程序设计(4)”26 页
++ 经典写构造函数和析构函数执行顺序的题，sjs 课件“C++程序设计(4)”26 页
 
   本题答案有争议。在不同的编译环境下，可能会产生截然不同的结果。但是为了考试拿分，还是严格按照课件给的答案进行。要了解更多内容，请阅读后面的[阅读材料 3](#阅读材料)  
 
-  > VS、/std:c++14、/Od
+  > + 请开启 VS、/std:c++14、/Od
+  >
+  > + 争议点
+  >
+  >   + 关于返回值优化
+  >
+  >   + 参数与返回值对象的析构顺序问题，构造时显然是先构造参数后构造返回值，至于析构，sjs 课件上是先析构参数后析构返回值，但一些其他的实现可能是先析构返回值后析构参数，例如 <https://gcc.godbolt.org/z/x8zjTKoMf>：
+  >
+  >     ![param_return_destruct_reverse](./assets/param_return_destruct_reverse.jpg)
+  >
+  >     实际上这个问题是有争议的，感兴趣的同学可以看这个问题下的“激烈讨论”：[c++ - What's the order of destruction of function parameters and return values? - Stack Overflow](https://stackoverflow.com/questions/76388464/whats-the-order-of-destruction-of-function-parameters-and-return-values?noredirect=1#comment134769594_76388464)
+  >
+  >     大家最好是完全按照 sjs 上的讲义去写，不要头铁
   
   ```c++
   #include <iostream>
