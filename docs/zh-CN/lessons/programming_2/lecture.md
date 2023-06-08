@@ -475,9 +475,9 @@ private:
   >
   >     ![param_return_destruct_reverse](./assets/param_return_destruct_reverse.jpg)
   >
-  >     实际上这个问题是有争议的，感兴趣的同学可以看这个问题下的“激烈讨论”：[c++ - What's the order of destruction of function parameters and return values? - Stack Overflow](https://stackoverflow.com/questions/76388464/whats-the-order-of-destruction-of-function-parameters-and-return-values?noredirect=1#comment134769594_76388464)
+  >     实际上这个问题是有争议的，感兴趣的同学可以看这个问题下的“激烈讨论”：[c++ - What's the order of destruction of function parameters and return values? - Stack Overflow](https://stackoverflow.com/questions/76388464/whats-the-order-of-destruction-of-function-parameters-and-return-values)
   >
-  >     大家最好是完全按照 sjs 上的讲义去写，不要头铁
+  >     大家最好是完全按照 sjs 上的讲义去写，不要头铁；我曾经发邮件问过 sjs 老师，sjs 老师给的邮件回复是“批改时我们会酌情考虑这些问题”。
   
   ```c++
   #include <iostream>
