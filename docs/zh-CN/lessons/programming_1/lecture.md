@@ -163,7 +163,7 @@ C 语言是由著名的 Brian Kernighan 和 Dennis Ritchie 发明的语言，继
           int32_t x;	// int32_t 指四字节大小的整数
           int32_t y;
       };
-      // 32-bit / 64-bit: 12byte
+      // 32-bit / 64-bit: 12bytes
       ```
     
     + ```c
@@ -172,7 +172,7 @@ C 语言是由著名的 Brian Kernighan 和 Dennis Ritchie 发明的语言，继
           int32_t y[2];
           char c[3];
       };
-      // 32-bit / 64-bit: 16byte
+      // 32-bit / 64-bit: 16bytes
       ```
       
     + ```c
@@ -180,8 +180,8 @@ C 语言是由著名的 Brian Kernighan 和 Dennis Ritchie 发明的语言，继
           int32_t x;
           double d;
       };
-      // 32-bit: 12byte
-      // 64-bit: 16byte
+      // 32-bit: 12bytes
+      // 64-bit: 16bytes
       ```
 
 > 43
