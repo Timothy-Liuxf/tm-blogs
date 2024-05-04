@@ -36,6 +36,8 @@
         </section>
       </div>
       <div style="display: flex; align-items: center">
+        <a id="back" class="btn" href="javascript:getBackUrl()"
+          style="display: inline-block; margin-right: 5px; white-space: nowrap;">Back</a>
         <select class="btn select-lang" style="display: inline-block;" onchange="redirectToLanguage()">
           <option class="btn option-lang" value="zh-CN">
             中文（大陆简体）
@@ -62,6 +64,40 @@
               break;
             }
           }
+
+          const back = document.getElementById('back');
+          if (lang_index !== -1) {
+            switch (paths[lang_index]) {
+              case 'zh-CN':
+                back.innerText = '返回';
+                break;
+              case 'zh-TW':
+                back.innerText = '返回';
+                break;
+              case 'fr-FR':
+                back.innerText = 'Retour';
+                break;
+              default:
+                back.innerText = 'Back';
+                break;
+            }
+          } else if (paths.length > 1 && paths[paths.length - 2] === 'docs') {
+            back.innerText = 'Home';
+          } else {
+            back.style.display = 'none';
+          }
+
+          const getBackUrl = () => {
+            if (lang_index !== -1) {
+              if (lang_index + 2 === paths.length) {
+                window.location.href = paths.slice(0, lang_index).join('/') + '/';
+              } else {
+                window.location.href = paths.slice(0, lang_index + 1).join('/') + '/';
+              }
+            } else if (paths.length > 1 && paths[paths.length - 2] === 'docs') {
+              window.location.href = paths.slice(0, paths.length - 2).join('/') + '/';
+            }
+          };
 
           const redirectToLanguage = () => {
             if (lang_index !== -1) {
