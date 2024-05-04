@@ -19,9 +19,9 @@
       margin-right: 10px;
     }
 
-    .btn-back {
+    .btn-extra {
       display: inline-block;
-      margin-right: 5px;
+      margin: 5px;
       white-space: nowrap;
     }
 
@@ -74,8 +74,8 @@
         </section>
       </div>
       <div class="extra-buttons">
-        <a id="back" class="btn btn-back" href="javascript:getBackUrl()">Back</a>
-        <select class="btn select-lang" onchange="redirectToLanguage()">
+        <a id="back" class="btn btn-extra" href="javascript:returnToBackPage()">Back</a>
+        <select id="select-lang" class="btn btn-extra select-lang" onchange="redirectToLanguage()">
           <option class="btn option-lang" value="zh-CN">
             中文（大陆简体）
           </option>
@@ -93,13 +93,16 @@
           const paths = window.location.href.split('/');
           const pattern = /^(zh-CN|zh-TW|en-US|fr-FR)$/;
           let lang_index = -1;
-          document.querySelector('.select-lang').value = 'en-US';
+          document.getElementById("select-lang").value = 'en-US';
           for (let i = 0; i < paths.length; ++i) {
             if (pattern.test(paths[i])) {
-              document.querySelector('.select-lang').value = paths[i];
+              document.getElementById("select-lang").value = paths[i];
               lang_index = i;
               break;
             }
+          }
+          if (lang_index === -1) {
+            document.getElementById("select-lang").style.display = 'none';
           }
 
           const back = document.getElementById('back');
@@ -124,7 +127,7 @@
             back.style.display = 'none';
           }
 
-          const getBackUrl = () => {
+          const returnToBackPage = () => {
             if (lang_index !== -1) {
               if (lang_index + 2 === paths.length) {
                 window.location.href = paths.slice(0, lang_index).join('/') + '/';
@@ -138,7 +141,7 @@
 
           const redirectToLanguage = () => {
             if (lang_index !== -1) {
-              paths[lang_index] = document.querySelector('.select-lang').value;
+              paths[lang_index] = document.getElementById("select-lang").value;
               window.location.href = paths.join('/');
             }
           };
