@@ -626,7 +626,7 @@ A：可以，QQ 也行（x
 
 由于课时原因，有很多有趣的内容我们都没有讲解。这些内容在程设的日常教学中已经涉及到，但是与考试关系不大。略去这些内容不会对我们的考试产生太大影响。有兴趣探索的同学可以阅读以下材料：  
 
-所有阅读材料均在仓库 [https://github.com/Timothy-LiuXuefeng/tm-blogs](https://github.com/Timothy-LiuXuefeng/tm-blogs) 中可见，位于 `docs/zh-CN/c_cpp` 目录中。包括：  
+所有阅读材料均在仓库 [https://github.com/Timothy-LiuXuefeng/tm-blogs](https://github.com/Timothy-LiuXuefeng/tm-blogs) 中可见，位于 `blogs/zh-CN/c_cpp` 目录中。包括：  
 
 1. 左值与右值
 2. 为什么 `const` 在 C++ 中是重要的

@@ -121,7 +121,7 @@
                 back.innerText = 'Back';
                 break;
             }
-          } else if (paths.length > 1 && paths[paths.length - 2] === 'docs') {
+          } else if (paths.length > 1 && paths[paths.length - 2] === 'blogs') {
             back.innerText = 'Home';
           } else {
             back.style.display = 'none';
@@ -134,7 +134,7 @@
               } else {
                 window.location.href = paths.slice(0, lang_index + 1).join('/') + '/';
               }
-            } else if (paths.length > 1 && paths[paths.length - 2] === 'docs') {
+            } else if (paths.length > 1 && paths[paths.length - 2] === 'blogs') {
               window.location.href = paths.slice(0, paths.length - 2).join('/') + '/';
             }
           };
