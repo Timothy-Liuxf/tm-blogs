@@ -1,6 +1,8 @@
 # tm-blogs
 Timothy Liu's blogs
 
+## [Get Started](./docs/)
+
 ## License
 
 Copyright (C) 2023 Timothy Liu
