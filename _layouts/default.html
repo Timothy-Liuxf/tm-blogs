@@ -7,6 +7,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   <style>
+    .head_wrapper {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+    }
+
+    .extra-buttons {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+    }
+
+    .btn-back {
+      display: inline-block;
+      margin-right: 5px;
+      white-space: nowrap;
+    }
+
+    .select-lang {
+      display: inline-block;
+    }
+
+    @media screen and (max-width: 768px) {
+      .head_wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
     .option-lang {
       background-color: black;
     }
@@ -19,7 +57,7 @@
 <body>
 
   <header>
-    <div class="head_wrapper" style="display: flex; justify-content: space-between; flex-direction: row;">
+    <div class="head_wrapper">
       <div class="container">
         <a id="a-title" href="{{ '/' | relative_url }}">
           <h1>{{ site.title | default: site.github.repository_name }}</h1>
@@ -35,10 +73,9 @@
             GitHub</a>
         </section>
       </div>
-      <div style="display: flex; align-items: center">
-        <a id="back" class="btn" href="javascript:getBackUrl()"
-          style="display: inline-block; margin-right: 5px; white-space: nowrap;">Back</a>
-        <select class="btn select-lang" style="display: inline-block;" onchange="redirectToLanguage()">
+      <div class="extra-buttons">
+        <a id="back" class="btn btn-back" href="javascript:getBackUrl()">Back</a>
+        <select class="btn select-lang" onchange="redirectToLanguage()">
           <option class="btn option-lang" value="zh-CN">
             中文（大陆简体）
           </option>
