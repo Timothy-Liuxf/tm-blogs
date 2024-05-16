@@ -14,7 +14,7 @@
         if (lang_index !== -1) {
             const lang = paths[lang_index];
             if (lang === 'zh-CN') {
-                window.location.href = paths.slice(0, 4).join('/') + '/unavailable';
+                window.location.href = paths.slice(0, 4).join('/') + '/unavailable.html';
             } else {
                 const new_paths = paths.slice(0, lang_index).concat(
                     lang === 'en-US' || lang === 'zh-TW' ? 'zh-CN' : 'en-US'
@@ -22,7 +22,7 @@
                 window.location.href = new_paths.join('/').replace(/\.md$/, '.html');
             }
         } else {
-            window.location.href = paths.slice(0, 4).join('/') + '/unavailable';
+            window.location.href = paths.slice(0, 4).join('/') + '/unavailable.html';
         }
     </script>
 </head>
