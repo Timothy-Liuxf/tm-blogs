@@ -21,12 +21,11 @@
             const lang = paths[lang_index];
             if (lang === 'zh-CN') {
                 window.location.href = paths.slice(0, 4).join('/') + '/unavailable';
-            } else if (lang === 'en-US' || lang === 'zh-TW') {
-                const new_paths = paths.slice(0, lang_index).concat('zh-CN').concat(paths.slice(lang_index + 1));
-                window.location.href = new_paths.join('/');
             } else {
-                const new_paths = paths.slice(0, lang_index).concat('en-US').concat(paths.slice(lang_index + 1));
-                window.location.href = new_paths.join('/');
+                const new_paths = paths.slice(0, lang_index).concat(
+                    lang === 'en-US' || lang === 'zh-TW' ? 'zh-CN' : 'en-US'
+                ).concat(paths.slice(lang_index + 1));
+                window.location.href = new_paths.join('/').replace(/\.md$/, '.html');
             }
         } else {
             window.location.href = paths.slice(0, 4).join('/') + '/unavailable';
