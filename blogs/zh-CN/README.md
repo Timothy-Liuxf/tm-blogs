@@ -5,7 +5,7 @@
 + [左值与右值](./c_cpp/lvalue-and-rvalue.md)
 + [返回值优化](./c_cpp/return-value-optimization.md)
 + [为什么 `const` 在 C++ 中是必要的](./c_cpp/why-const-is-essential-in-cpp.md)
-+ [右值引用和移动语义](./c_cpp/rvalue-reference-and-move-semantics.md)
++ [右值引用和移动语义](./c_cpp/rvalue-references-and-move-semantics.md)
 
 ## 课程
 

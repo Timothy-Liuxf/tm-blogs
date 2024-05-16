@@ -152,7 +152,7 @@ int main() {
 
 ## C++11 標準
 
-C++11 標準引入了 [rvalue 參考和行動語意](./rvalue-reference-and-move-semantics.md)。因此對於之前所述的傳回值最佳化的情況，如果該類別定義了移動建構函式，那麽標準要求的將不會是兩次複製建構，而是兩次移動建構。
+C++11 標準引入了 [rvalue 參考和移動語意](./rvalue-references-and-move-semantics.md)。因此對於之前所述的傳回值最佳化的情況，如果該類別定義了移動建構函式，那麽標準要求的將不會是兩次複製建構，而是兩次移動建構。
 
 但是，對於前面所述的具名傳回值最佳化，由於 `return` 後面的運算式是 lvalue，如果按照原本的規定，應當還是會進行一次複製建構的。但是，C++11 在此處做了一個特別的規定——在 `return` 後面的表達式（如果可能的話）[將會自動作為 rvalue 運算式](https://zh.cppreference.com/w/cpp/language/return#.E8.87.AA.E5.8A.A8.E4.BB.8E.E5.B1.80.E9.83.A8.E5.8F.98.E9.87.8F.E5.92.8C.E5.BD.A2.E5.8F.82.E7.A7.BB.E5.8A.A8)，從而呼叫移動建構函式，而不會呼叫複製建構函式。
 
