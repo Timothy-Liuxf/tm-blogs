@@ -90,7 +90,8 @@
           </option>
         </select>
         <script>
-          const paths = window.location.href.split('/');
+          const current_url = window.location.href;
+          const paths = current_url.split('/');
           const pattern = /^(zh-CN|zh-TW|en-US|fr-FR)$/;
           let lang_index = -1;
           document.getElementById("select-lang").value = 'en-US';
@@ -121,10 +122,10 @@
                 back.innerText = 'Back';
                 break;
             }
-          } else if (paths.length > 1 && paths[paths.length - 2] === 'blogs') {
-            back.innerText = 'Home';
-          } else {
+          } else if (paths.length == 5 && current_url.endsWith('/')) {
             back.style.display = 'none';
+          } else {
+            back.innerText = 'Home';
           }
 
           const returnToBackPage = () => {
@@ -134,8 +135,8 @@
               } else {
                 window.location.href = paths.slice(0, lang_index + 1).join('/') + '/';
               }
-            } else if (paths.length > 1 && paths[paths.length - 2] === 'blogs') {
-              window.location.href = paths.slice(0, paths.length - 2).join('/') + '/';
+            } else {
+              window.location.href = paths.slice(0, 4).join('/') + '/'
             }
           };
 

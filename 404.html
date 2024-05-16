@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: " en-US" }}">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <script>
+        const paths = window.location.href.split('/');
+        const pattern = /^(zh-CN|zh-TW|en-US|fr-FR)$/;
+        let lang_index = -1;
+        for (let i = 0; i < paths.length; ++i) {
+            if (pattern.test(paths[i])) {
+                lang_index = i;
+                break;
+            }
+        }
+
+        if (lang_index !== -1) {
+            const lang = paths[lang_index];
+            if (lang === 'zh-CN') {
+                window.location.href = paths.slice(0, 4).join('/') + '/unavailable';
+            } else if (lang === 'en-US' || lang === 'zh-TW') {
+                const new_paths = paths.slice(0, lang_index).concat('zh-CN').concat(paths.slice(lang_index + 1));
+                window.location.href = new_paths.join('/');
+            } else {
+                const new_paths = paths.slice(0, lang_index).concat('en-US').concat(paths.slice(lang_index + 1));
+                window.location.href = new_paths.join('/');
+            }
+        } else {
+            window.location.href = paths.slice(0, 4).join('/') + '/unavailable';
+        }
+    </script>
+</head>
+
+<body>
+    <h2>404</h2>
+</body>
+
+</html>
