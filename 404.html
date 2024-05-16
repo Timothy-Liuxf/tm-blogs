@@ -9,13 +9,7 @@
     <script>
         const paths = window.location.href.split('/');
         const pattern = /^(zh-CN|zh-TW|en-US|fr-FR)$/;
-        let lang_index = -1;
-        for (let i = 0; i < paths.length; ++i) {
-            if (pattern.test(paths[i])) {
-                lang_index = i;
-                break;
-            }
-        }
+        const lang_index = paths.findIndex(path => pattern.test(path));
 
         if (lang_index !== -1) {
             const lang = paths[lang_index];

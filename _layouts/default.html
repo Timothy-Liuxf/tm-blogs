@@ -53,13 +53,8 @@
     const current_url = window.location.href;
     const paths = current_url.split('/');
     const pattern = /^(zh-CN|zh-TW|en-US|fr-FR)$/;
-    let lang_index = -1;
-    for (let i = 0; i < paths.length; ++i) {
-      if (pattern.test(paths[i])) {
-        lang_index = i;
-        break;
-      }
-    }
+    const lang_index = paths.findIndex(path => pattern.test(path));
+
     document.documentElement.lang = lang_index !== -1 ? paths[lang_index] : 'en-US';
 
     const returnToBackPage = () => {
