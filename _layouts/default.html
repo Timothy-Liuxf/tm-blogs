@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: " en-US" }}">
+<html>
 
 <head>
   <meta charset='utf-8'>
@@ -49,6 +49,31 @@
       background-color: black;
     }
   </style>
+  <script type="text/javascript">
+    const current_url = window.location.href;
+    const paths = current_url.split('/');
+    const pattern = /^(zh-CN|zh-TW|en-US|fr-FR)$/;
+    let lang_index = -1;
+    for (let i = 0; i < paths.length; ++i) {
+      if (pattern.test(paths[i])) {
+        lang_index = i;
+        break;
+      }
+    }
+    document.documentElement.lang = lang_index !== -1 ? paths[lang_index] : 'en-US';
+
+    const returnToBackPage = () => {
+      if (lang_index !== -1) {
+        if (lang_index + 2 === paths.length) {
+          window.location.href = paths.slice(0, lang_index).join('/') + '/';
+        } else {
+          window.location.href = paths.slice(0, lang_index + 1).join('/') + '/';
+        }
+      } else {
+        window.location.href = paths.slice(0, 4).join('/') + '/'
+      }
+    };
+  </script>
   {% include head-custom.html %}
 
   {% seo %}
@@ -90,20 +115,11 @@
           </option>
         </select>
         <script>
-          const current_url = window.location.href;
-          const paths = current_url.split('/');
-          const pattern = /^(zh-CN|zh-TW|en-US|fr-FR)$/;
-          let lang_index = -1;
           document.getElementById("select-lang").value = 'en-US';
-          for (let i = 0; i < paths.length; ++i) {
-            if (pattern.test(paths[i])) {
-              document.getElementById("select-lang").value = paths[i];
-              lang_index = i;
-              break;
-            }
-          }
           if (lang_index === -1) {
             document.getElementById("select-lang").style.display = 'none';
+          } else {
+            document.getElementById("select-lang").value = paths[lang_index];
           }
 
           const back = document.getElementById('back');
@@ -127,18 +143,6 @@
           } else {
             back.innerText = 'Home';
           }
-
-          const returnToBackPage = () => {
-            if (lang_index !== -1) {
-              if (lang_index + 2 === paths.length) {
-                window.location.href = paths.slice(0, lang_index).join('/') + '/';
-              } else {
-                window.location.href = paths.slice(0, lang_index + 1).join('/') + '/';
-              }
-            } else {
-              window.location.href = paths.slice(0, 4).join('/') + '/'
-            }
-          };
 
           const redirectToLanguage = () => {
             if (lang_index !== -1) {
