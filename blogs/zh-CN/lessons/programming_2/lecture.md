@@ -6,7 +6,7 @@
 
 刘雪枫 - 无 92
 
-Copyright (C) Timothy Liu 2023
+Copyright (C) Timothy Liu 2023-2024
 
 许可证：[Creative Commons — 署名-相同方式共享 4.0 国际 — CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-Hans)
 
@@ -626,7 +626,7 @@ A：可以，QQ 也行（x
 
 由于课时原因，有很多有趣的内容我们都没有讲解。这些内容在程设的日常教学中已经涉及到，但是与考试关系不大。略去这些内容不会对我们的考试产生太大影响。有兴趣探索的同学可以阅读以下材料：  
 
-所有阅读材料均在仓库 [https://github.com/Timothy-LiuXuefeng/tm-blogs](https://github.com/Timothy-LiuXuefeng/tm-blogs) 中可见，位于 `blogs/zh-CN/c_cpp` 目录中。包括：  
+所有阅读材料均在仓库 [https://timothy-liuxf.github.io/tm-blogs/blogs/zh-CN/](https://timothy-liuxf.github.io/tm-blogs/blogs/zh-CN/) 中可见。包括：  
 
 1. 左值与右值
 2. 为什么 `const` 在 C++ 中是重要的
