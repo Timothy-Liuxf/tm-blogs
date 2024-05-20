@@ -8,7 +8,7 @@ Timothy Liu's blogs
 
 Copyright (C) 2023-2024 Timothy Liu
 
-[CC BY-SA 4.0 license](./LICENSE.txt)
+[View license](./LICENSE.md)
 
 ## Support me
 
