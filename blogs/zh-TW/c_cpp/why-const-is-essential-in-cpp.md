@@ -48,7 +48,7 @@ double cabs(Complex& z)
 }
 ```
 
-有一天我不是很爽，寫了這樣的程式碼呼叫這個函式：`cabs(Complex(0.0, 0.0))`。結果非常 Amazing 啊！編譯錯誤（然而這東西在 VS2008 上貌似并不會編譯錯誤，讓我們不考慮 VS2008）。為什麽呢？我們所説的傳統意義上的“參考”，只能繫結到 [lvalue](./lvalue-and-rvalue.md)（在 C++11 出現右值參考之後，原來的參考也被稱作左值參考），而 `Complex(0.0, 0.0)` 這是個右值運算式，因此并沒有辦法被參考。那怎麽改呢？一個方法是把參數改成 `Complex z`。但是如果對於一些其他的類型，複製其物件可能會引來很大的負荷，或者是該類型的複製建構函式不可存取或[已經定義為刪除](https://zh.cppreference.com/w/cpp/language/function#.E5.BC.83.E7.BD.AE.E5.87.BD.E6.95.B0)，因此我們還是希望參數為參考。那麽，`const` 就派上用場了。[對有 `const` 限定（但沒有 `volatile` 限定）的類型的左值參考既可以繫結到左值，又可以繫結到右值](https://zh.cppreference.com/w/cpp/language/reference_initialization)。所以函式改為：
+有一天我不是很爽，寫了這樣的程式碼呼叫這個函式：`cabs(Complex(0.0, 0.0))`。結果非常 Amazing 啊！編譯錯誤（然而這東西在 VS2008 上貌似并不會編譯錯誤，讓我們不考慮 VS2008）。為什麽呢？我們所説的傳統意義上的“參考”，只能使用 [lvalue 運算式](./lvalue-and-rvalue.md)初始化（在 C++11 出現右值參考之後，原來的參考也被稱作左值參考），而 `Complex(0.0, 0.0)` 這是個右值運算式，因此并沒有辦法被參考。那怎麽改呢？一個方法是把參數改成 `Complex z`。但是如果對於一些其他的類型，複製其物件可能會引來很大的負荷，或者是該類型的複製建構函式不可存取或[已經定義為刪除](https://zh.cppreference.com/w/cpp/language/function#.E5.BC.83.E7.BD.AE.E5.87.BD.E6.95.B0)，因此我們還是希望參數為參考。那麽，`const` 就派上用場了。[對有 `const` 限定（但沒有 `volatile` 限定）的類型的左值參考既可以使用左值運算式初始化，又可以使用右值運算式初始化](https://zh.cppreference.com/w/cpp/language/reference_initialization)。所以函式改為：
 
 ```c++
 double cabs(const Complex& z)
@@ -65,7 +65,7 @@ double cabs(const Complex& z)
 
 ## 什麽時候該加 `const`？
 
-如果一個成員函式不會改變類別内的成員，那麽請毫不猶豫地加上 `const`；如果一個以指標或參考傳遞的函式參數不會改變其參考或指向的物件，那麽也請毫不猶豫地加上 `const`。
+如果一個成員函式不會改變物件的成員，那麽請毫不猶豫地加上 `const`；如果一個以指標或參考傳遞的函式參數不會改變其參考或指向的物件，那麽也請毫不猶豫地加上 `const`。
 
 **未完待續……**
 
