@@ -22,13 +22,13 @@
 >
 > 1. An *lvalue* is an expression (with an object type other than void) that potentially designates an object.
 
-对于“右值”，C 语言标准并没有给出明确定义，只是在该页做了脚注：
+    对于“右值”，C 语言标准并没有给出明确定义，只是在该页做了脚注：
 
 > 69) ... What is sometimes called ‘‘rvalue’’ is in this International Standard described as the ‘‘value of an expression’’.
 
 通过以上定义可以看出，简单但不严谨地说，所谓“左值”，主要是指该表达式的求值结果是一个真正存在的“对象”，否则该表达式就是右值。如果更加形象通俗一点地说，一个变量（注意 C 语言中没有严格定义“变量”的概念，可以简单将 C 语言的“变量”理解成“对象”，从而不影响这种表述也适用于 C 语言）可以看作是一个“盒子”，里面装着这个变量所储存的“内容”。而“左值”则指的是该表达式的结果是这个“盒子”本身，而“右值”则指的是表达式的结果是“盒子”里装着的“内容”。
 
-例如，`int x = 5;` 定义了一个变量 `x`，这个 `x` 就成为了一个“盒子”，里面装着“5”这样一个“内容”。因此，我们可以对 `x` 进行赋值等操作，例如赋值表达式 `x = 8` 中，`=` 左侧的表达式 `x` 就是一个左值表达式，即该表达式的求值结果指的是 `x` 这个“盒子”，而非 `x` 装的“内容” `5`。而 `8` 则是一个右值表达式，因为我们并没有创建任何的存储 `8` 这个内容的“盒子”。
+例如，`int x = 5;` 定义了一个变量 `x`，这个 `x` 就成为了一个“盒子”，里面装着“`5`”这样一个“内容”。因此，我们可以对 `x` 进行赋值等操作，例如赋值表达式 `x = 8` 中，`=` 左侧的表达式 `x` 就是一个左值表达式，即该表达式的求值结果指的是 `x` 这个“盒子”，而非 `x` 装的“内容” `5`。而 `8` 则是一个右值表达式，因为我们并没有创建任何的存储 `8` 这个内容的“盒子”。
 
 当然以上说法并不是完全准确，也是存在例外的。C 语言存在特别规定：
 
@@ -36,7 +36,7 @@
 >
 > 8. A non-lvalue expression with structure or union type, where the structure or union contains a member with array type (including, recursively, members of all contained structures and unions) refers to an object with automatic storage duration and *temporary lifetime*. 36) Its lifetime begins when the expression is evaluated ...
 
-也就是说，如果一个右值表达式的类型是一个结构体或联合体，且该结构体或联合体有数组作为其成员，则该右值表达式在求值时会产生一个具有临时生命周期的对象。
+也就是说，在 C 语言中，如果一个右值表达式的类型是一个结构体或联合体，且该结构体或联合体有数组作为其成员，则该右值表达式在求值时会产生一个具有临时生命周期的对象。
 
 一般来说，整数和浮点数的[字面量](https://zh.cppreference.com/w/c/language/expressions#.E5.B8.B8.E9.87.8F.E5.8F.8A.E5.AD.97.E9.9D.A2.E9.87.8F)（literal）所直接构成的表达式是右值，例如 `5`、`3.14`，等等；C 语言中函数调用表达式都是右值，例如一个函数为 `int func(void)`，则 `func()` 表达式是右值；类型转换表达式都是右值；算术表达式、逻辑表达式、赋值表达式等一系列表达式都是右值，等等。
 
@@ -50,7 +50,7 @@ C++98 则相对更加复杂，并且与 C 语言有很多不同。例如，C++98
 
 ## C++11
 
-在 C++11 中，表达式的值的划分发生了变化。一个表达式可以分为：**左值**（lvalue）、**亡值**（xvalue）、**纯右值**（prvalue）。其中，左值和亡值合称为**泛左值**（glvalue），亡值和纯右值合称为**右值**（rvalue）。 
+在 C++11 中，表达式的值的划分发生了变化。一个表达式可以分为：**左值**（lvalue）、**亡值**（xvalue）、**纯右值**（prvalue）。其中，左值和亡值合称为**泛左值**（glvalue），亡值和纯右值合称为**右值**（rvalue）。
 
 （未完待续）
 

@@ -36,7 +36,7 @@
 >
 > 8. A non-lvalue expression with structure or union type, where the structure or union contains a member with array type (including, recursively, members of all contained structures and unions) refers to an object with automatic storage duration and *temporary lifetime*. 36) Its lifetime begins when the expression is evaluated ...
 
-也就是説，如果一個 rvalue 運算式的類型是一個 struct 或 union，且該 struct 或 union 有陣列作為其成員，則該 rvalue 運算式在評估時會產生暫存對象。
+也就是説，在 C 語言中，如果一個 rvalue 運算式的類型是一個 struct 或 union，且該 struct 或 union 有陣列作為其成員，則該 rvalue 運算式在評估時會產生暫存對象。
 
 一般來説，整數和浮點值的 [literal](https://zh.cppreference.com/w/c/language/expressions#.E5.B8.B8.E9.87.8F.E5.8F.8A.E5.AD.97.E9.9D.A2.E9.87.8F) 所直接構成的運算式是 rvalue，例如 `5`、`3.14`，等等；C 語言中函式呼叫運算式都是 rvalue，例如一個函式為 `int func(void)`，則 `func()` 運算式是 rvalue；類型轉換運算式都是 rvalue；算術運算式、邏輯運算式、指派運算式等一系列運算式都是 rvalue，等等。
 

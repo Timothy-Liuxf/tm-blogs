@@ -1,4 +1,4 @@
-# Why `const` is essential in C++
+# Why `const` is Essential in C++
 
 > Copyright (C) 2024 Timothy Liu
 >
@@ -48,7 +48,7 @@ double cabs(Complex& z)
 }
 ```
 
-And if one day we call this function as: `cabs(Complex(0.0, 0.0))` and compile it, the compiler will give an error! Very 'amazing', well (but it seems that VS2008 will not give a compilation error, so let's ignore VS2008). But why? Note that what we called 'reference' typically can only be initialized with an [lvalue expression](./lvalue-and-rvalue.md) (after the rvalue reference is introduced into C++11, the original reference is also called 'lvalue reference'), but `Complex(0.0, 0.0)` is an rvalue expression, thus cannot be referenced by lvalue references. Then how should we change the code? One approach is to change the parameter to `Complex z`. However, for some types, copying their objects may cause much overhead, or the copy constructor cannot be accessed or [is deleted](https://en.cppreference.com/w/cpp/language/function#Deleted_functions), so the parameter must be a reference. Then we can use `const` to solve this problem. [In C++, lvalue references to const-qualified (but not volatile-qualified) types can be initialized with both lvalue expressions and rvalue expressions.](https://en.cppreference.com/w/cpp/language/reference_initialization) So the function can be rewritten as below:
+And if one day we call this function as: `cabs(Complex(0.0, 0.0))` and compile it, the compiler will give an error! Very "amazing", well (but it seems that VS2008 will not give a compilation error, so let's ignore VS2008). But why? Note that what we called "reference" typically can only be initialized with an [lvalue expression](./lvalue-and-rvalue.md) (after the rvalue reference is introduced into C++11, the original reference is also called "lvalue reference"), but `Complex(0.0, 0.0)` is an rvalue expression, thus cannot be referenced by lvalue references. Then how should we change the code? One approach is to change the parameter to `Complex z`. However, for some types, copying their objects may cause much overhead, or the copy constructor cannot be accessed or [is deleted](https://en.cppreference.com/w/cpp/language/function#Deleted_functions), so the parameter must be a reference. Then we can use `const` to solve this problem. [In C++, lvalue references to const-qualified (but not volatile-qualified) types can be initialized with both lvalue expressions and rvalue expressions.](https://en.cppreference.com/w/cpp/language/reference_initialization) So the function can be rewritten as below:
 
 ```c++
 double cabs(const Complex& z)
