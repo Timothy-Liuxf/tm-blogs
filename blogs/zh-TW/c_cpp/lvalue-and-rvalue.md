@@ -2,7 +2,7 @@
 
 > Copyright (C) 2023-2024 Timothy Liu
 >
-> [Creative Commons — 姓名標示-相同方式分享 4.0 國際 — CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh_TW) 授權條款
+> [Creative Commons — 姓名標示-相同方式分享 4.0 國際 — CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hant) 授權條款
 
 ## 前言
 
