@@ -7,8 +7,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/custom.css?v=' | append: site.github.build_revision | relative_url }}">
+  <script type="text/javascript">
+    const base_url = "{{ site.github.url }}";
+    const repo_url = "{{ site.github.repository_url }}";
+    const repo_branch = "{{ site.github.source.branch }}";
+    const repo_path = "{{ site.github.source.path }}";
+  </script>
   <script type="text/javascript"
     src="{{ '/assets/js/prepare.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+  <script type="text/javascript">
+    const viewOnGitHub = () => {
+      if (is_main_page) {
+        window.location.href = repo_url + '/';
+      } else {
+        let target = `${repo_url}/blob/${repo_branch}/${repo_path.replace(/\/$/, '')}`;
+        if (!target.endsWith('/')) {
+          target += '/';
+        }
+        target += current_url.slice(base_url.length + 1);
+        if (target.endsWith('/')) {
+          target += 'README.md';
+        } else if (target.endsWith('.html')) {
+          target = target.replace(/\.html$/, '.md');
+        }
+        window.location.href = target;
+      }
+    };
+
+    const returnToBackPage = () => {
+      if (lang_index !== -1) {
+        if (lang_index + 2 === paths.length) {
+          window.location.href = paths.slice(0, lang_index).join('/') + '/';
+        } else {
+          window.location.href = paths.slice(0, lang_index + 1).join('/') + '/';
+        }
+      } else {
+        window.location.href = paths.slice(0, 4).join('/') + '/'
+      }
+    };
+  </script>
   {% include head-custom.html %}
 
   {% seo %}
