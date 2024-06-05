@@ -1,0 +1,56 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family:
+    Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal;
+}
+
+code {
+  font-family: 'Source Code Pro', 'Consolas', monospace;
+}
+
+.head_wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.extra-buttons {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.btn-extra {
+  display: inline-block;
+  margin: 5px;
+  white-space: nowrap;
+}
+
+.select-lang {
+  display: inline-block;
+}
+
+@media screen and (max-width: 768px) {
+  .head_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.option-lang {
+  background-color: black;
+}
