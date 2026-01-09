@@ -123,7 +123,7 @@ C++23 标准中给我们提供了 `std::generator`，例如下面的案例中，
 ```c++
 /*
  * File: main.cpp
-*/
+ */
 
 #include <generator>
 #include <iostream>
@@ -156,6 +156,10 @@ g++-14 -std=c++23 -O2 -Wall -Wpedantic -Wextra main.cpp
 我们希望实现如下的功能：
 
 ```cpp
+/*
+ * File: main.cpp
+ */
+
 #include <coroutine>  // 使用协程需要包含此头文件
 #include <iostream>
 #include <print>
