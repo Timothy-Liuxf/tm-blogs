@@ -1,0 +1,61 @@
+# Keep every URL inside the language block it belongs to. Only list pages that
+# actually exist in that language so the sidebar never relies on 404 fallback.
+zh-CN:
+  label: 中文站内导航
+  home_label: 中文首页
+  open_label: 展开导航
+  close_label: 隐藏导航
+  home_url: /blogs/zh-CN/
+  sections:
+    - title: C / C++
+      items:
+        - title: 左值与右值
+          url: /blogs/zh-CN/c_cpp/lvalue-and-rvalue.html
+        - title: 返回值优化
+          url: /blogs/zh-CN/c_cpp/return-value-optimization.html
+        - title: 为什么 const 在 C++ 中是必要的
+          url: /blogs/zh-CN/c_cpp/why-const-is-essential-in-cpp.html
+        - title: 右值引用和移动语义
+          url: /blogs/zh-CN/c_cpp/rvalue-references-and-move-semantics.html
+        - title: 手把手学习 C++20 协程
+          url: /blogs/zh-CN/c_cpp/cpp-coroutine.html
+    - title: 课程
+      items:
+        - title: 计算机程序设计基础（1）
+          url: /blogs/zh-CN/lessons/programming_1/lecture.html
+        - title: 计算机程序设计基础（2）
+          url: /blogs/zh-CN/lessons/programming_2/lecture.html
+        - title: 数据与算法
+          url: /blogs/zh-CN/lessons/data_and_algorithm/lecture.html
+        - title: 数字逻辑与处理器基础
+          url: /blogs/zh-CN/lessons/digital_logic_and_cpu/lecture.html
+
+zh-TW:
+  label: 中文站內導覽
+  home_label: 中文首頁
+  open_label: 展開導覽
+  close_label: 隱藏導覽
+  home_url: /blogs/zh-TW/
+  sections:
+    - title: C / C++
+      items:
+        - title: Lvalues 與 Rvalues
+          url: /blogs/zh-TW/c_cpp/lvalue-and-rvalue.html
+        - title: 傳回值最佳化
+          url: /blogs/zh-TW/c_cpp/return-value-optimization.html
+        - title: 為什麽 const 在 C++ 中是必要的
+          url: /blogs/zh-TW/c_cpp/why-const-is-essential-in-cpp.html
+
+en-US:
+  label: English site navigation
+  home_label: English home
+  open_label: Show navigation
+  close_label: Hide navigation
+  home_url: /blogs/en-US/
+  sections:
+    - title: C / C++
+      items:
+        - title: Lvalue & Rvalue
+          url: /blogs/en-US/c_cpp/lvalue-and-rvalue.html
+        - title: Why const is Essential in C++
+          url: /blogs/en-US/c_cpp/why-const-is-essential-in-cpp.html

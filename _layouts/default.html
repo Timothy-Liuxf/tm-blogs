@@ -17,6 +17,8 @@
     src="{{ '/assets/js/prepare.js?v=' | append: site.github.build_revision | relative_url }}"></script>
   <script type="text/javascript"
     src="{{ '/assets/js/colored-block.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+  <script type="text/javascript" defer
+    src="{{ '/assets/js/sidebar.js?v=' | append: site.github.build_revision | relative_url }}"></script>
 
   {% include head-custom.html %}
 
@@ -104,7 +106,19 @@
     </div>
   </header>
 
-  <div class="container">
+  {% assign page_path_parts = page.url | split: '/' %}
+  {% assign sidebar_language = page_path_parts[2] %}
+  {% assign sidebar_navigation = site.data.navigation[sidebar_language] %}
+  {% assign language_home_url = '/blogs/' | append: sidebar_language | append: '/' %}
+  {% assign show_sidebar = false %}
+  {% if page_path_parts[1] == 'blogs' and sidebar_navigation and page.url != language_home_url and page.name != 'README.md' and page.sidebar != false %}
+    {% assign show_sidebar = true %}
+  {% endif %}
+
+  <div class="container content-layout{% if show_sidebar %} has-sidebar{% endif %}">
+    {% if show_sidebar %}
+      {% include sidebar.html navigation=sidebar_navigation %}
+    {% endif %}
     <section id="main_content">
       {{ content }}
     </section>

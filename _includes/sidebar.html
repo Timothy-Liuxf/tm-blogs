@@ -1,0 +1,51 @@
+<button
+  type="button"
+  class="sidebar-open-button"
+  aria-label="{{ include.navigation.open_label }}"
+  title="{{ include.navigation.open_label }}"
+  aria-controls="sidebar-panel"
+  aria-expanded="false">
+  <span aria-hidden="true">☰</span>
+  <span class="sidebar-open-label">{{ include.navigation.open_label }}</span>
+</button>
+
+<aside id="sidebar-panel" class="sidebar" aria-hidden="false">
+  <button
+    type="button"
+    class="sidebar-close-button"
+    aria-controls="sidebar-panel"
+    aria-expanded="true">
+    <span aria-hidden="true">‹</span>
+    <span>{{ include.navigation.close_label }}</span>
+  </button>
+
+  <nav aria-label="{{ include.navigation.label }}">
+    <a class="sidebar-home" href="{{ include.navigation.home_url | relative_url }}">
+      {{ include.navigation.home_label }}
+    </a>
+
+    {% for section in include.navigation.sections %}
+      <section class="sidebar-section">
+        <h2>{{ section.title }}</h2>
+        <ul>
+          {% for item in section.items %}
+            <li>
+              {% if page.url == item.url %}
+                <span class="active" aria-current="page">{{ item.title }}</span>
+              {% else %}
+                <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endfor %}
+  </nav>
+</aside>
+
+<button
+  type="button"
+  class="sidebar-backdrop"
+  aria-label="{{ include.navigation.close_label }}"
+  tabindex="-1">
+</button>

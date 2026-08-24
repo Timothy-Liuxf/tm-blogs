@@ -483,3 +483,79 @@ a {
 .toc a {
   text-decoration: none;
 }
+
+/*
+ * Sidebar appearance
+ */
+
+.sidebar {
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background: #010409;
+}
+
+.sidebar-open-button,
+.sidebar-close-button {
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background: #161b22;
+  color: #f0f6fc;
+  font: inherit;
+  cursor: pointer;
+}
+
+.sidebar-open-button:hover,
+.sidebar-close-button:hover {
+  border-color: #58a6ff;
+  color: #79c0ff;
+}
+
+.sidebar-open-button:active,
+.sidebar-close-button:active {
+  border-color: #58a6ff;
+  background: #1f2937;
+  color: #a5d6ff;
+}
+
+.sidebar-open-button:focus-visible,
+.sidebar-close-button:focus-visible {
+  outline: 2px solid #4493f8;
+  outline-offset: 2px;
+}
+
+.sidebar-backdrop {
+  border: 0;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.sidebar-home {
+  font-weight: bold;
+}
+
+.sidebar-section h2 {
+  border-bottom: 1px solid #30363d;
+  font-size: 1rem;
+}
+
+.sidebar-section li {
+  list-style: none;
+}
+
+.sidebar a {
+  text-decoration: none;
+}
+
+.sidebar .active {
+  border-left: 3px solid #8b949e;
+  border-radius: 0 4px 4px 0;
+  background: rgba(110, 118, 129, 0.18);
+  color: #f0f6fc;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    border-radius: 0 6px 6px 0;
+    box-shadow: 8px 0 24px rgba(0, 0, 0, 0.45);
+  }
+}
