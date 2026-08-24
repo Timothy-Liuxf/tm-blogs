@@ -1,5 +1,5 @@
-# Keep every URL inside the language block it belongs to. Only list pages that
-# actually exist in that language so the sidebar never relies on 404 fallback.
+# Keep every URL inside the language block it belongs to. The navigation mirrors
+# each language's catalog, including entries whose translated Markdown is absent.
 zh-CN:
   label: 中文站内导航
   home_label: 中文首页
@@ -45,6 +45,20 @@ zh-TW:
           url: /blogs/zh-TW/c_cpp/return-value-optimization.html
         - title: 為什麽 const 在 C++ 中是必要的
           url: /blogs/zh-TW/c_cpp/why-const-is-essential-in-cpp.html
+        - title: Rvalue 參考和移動語意
+          url: /blogs/zh-TW/c_cpp/rvalue-references-and-move-semantics.html
+        - title: 手把手學習 C++20 共常式（coroutine）
+          url: /blogs/zh-TW/c_cpp/cpp-coroutine.html
+    - title: 課程
+      items:
+        - title: 計算機程式設計基礎（1）
+          url: /blogs/zh-TW/lessons/programming_1/lecture.html
+        - title: 計算機程式設計基礎（2）
+          url: /blogs/zh-TW/lessons/programming_2/lecture.html
+        - title: 資料與演算法
+          url: /blogs/zh-TW/lessons/data_and_algorithm/lecture.html
+        - title: 數位邏輯與處理器基礎
+          url: /blogs/zh-TW/lessons/digital_logic_and_cpu/lecture.html
 
 en-US:
   label: English site navigation
@@ -57,5 +71,51 @@ en-US:
       items:
         - title: Lvalue & Rvalue
           url: /blogs/en-US/c_cpp/lvalue-and-rvalue.html
+        - title: Return Value Optmization
+          url: /blogs/en-US/c_cpp/return-value-optimization.html
         - title: Why const is Essential in C++
           url: /blogs/en-US/c_cpp/why-const-is-essential-in-cpp.html
+        - title: Rvalue References & Move Semantics
+          url: /blogs/en-US/c_cpp/rvalue-references-and-move-semantics.html
+        - title: Learn C++20 Coroutine Step by Step
+          url: /blogs/en-US/c_cpp/cpp-coroutine.html
+    - title: Courses
+      items:
+        - title: Computer Program Design (1)
+          url: /blogs/en-US/lessons/programming_1/lecture.html
+        - title: Computer Program Design (2)
+          url: /blogs/en-US/lessons/programming_2/lecture.html
+        - title: Data and Algorithm
+          url: /blogs/en-US/lessons/data_and_algorithm/lecture.html
+        - title: Fundamental of digital logic and processor
+          url: /blogs/en-US/lessons/digital_logic_and_cpu/lecture.html
+
+fr-FR:
+  label: Navigation du site en français
+  home_label: Accueil français
+  open_label: Afficher la navigation
+  close_label: Masquer la navigation
+  home_url: /blogs/fr-FR/
+  sections:
+    - title: C / C++
+      items:
+        - title: Lvalues et rvalues
+          url: /blogs/fr-FR/c_cpp/lvalue-and-rvalue.html
+        - title: Optimisation de la valeur de retour
+          url: /blogs/fr-FR/c_cpp/return-value-optimization.html
+        - title: Pourquoi const est essentiel en C++
+          url: /blogs/fr-FR/c_cpp/why-const-is-essential-in-cpp.html
+        - title: Références rvalue et sémantique de déplacement
+          url: /blogs/fr-FR/c_cpp/rvalue-references-and-move-semantics.html
+        - title: Apprendre pas à pas les coroutines C++20
+          url: /blogs/fr-FR/c_cpp/cpp-coroutine.html
+    - title: Cours
+      items:
+        - title: Conception de programmes informatiques (1)
+          url: /blogs/fr-FR/lessons/programming_1/lecture.html
+        - title: Conception de programmes informatiques (2)
+          url: /blogs/fr-FR/lessons/programming_2/lecture.html
+        - title: Données et algorithmes
+          url: /blogs/fr-FR/lessons/data_and_algorithm/lecture.html
+        - title: Fondamentaux de la logique numérique et des processeurs
+          url: /blogs/fr-FR/lessons/digital_logic_and_cpu/lecture.html
