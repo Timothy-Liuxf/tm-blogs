@@ -13,9 +13,9 @@ const hash = current_url.split('#')[1];
 
 document.documentElement.lang = lang_index !== -1 ? paths[lang_index] : 'en-US';
 
-const viewOnGitHub = () => {
+const getViewOnGitHubUrl = () => {
   if (is_main_page) {
-    window.location.href = repo_url + '/';
+    return repo_url + '/';
   } else {
     let target = `${repo_url}/blob/${repo_branch}/${repo_path.replace(/\/$/, '')}`;
     if (!target.endsWith('/')) {
@@ -27,18 +27,18 @@ const viewOnGitHub = () => {
     } else if (target.endsWith('.html')) {
       target = target.replace(/\.html$/, '.md');
     }
-    window.location.href = target;
+    return target;
   }
 };
 
-const returnToBackPage = () => {
+const getReturnToBackPageUrl = () => {
   if (lang_index !== -1) {
     if (lang_index + 2 === paths.length) {
-      window.location.href = paths.slice(0, lang_index).join('/') + '/';
+      return paths.slice(0, lang_index).join('/') + '/';
     } else {
-      window.location.href = paths.slice(0, lang_index + 1).join('/') + '/';
+      return paths.slice(0, lang_index + 1).join('/') + '/';
     }
   } else {
-    window.location.href = paths.slice(0, 4).join('/') + '/'
+    return paths.slice(0, 4).join('/') + '/'
   }
 };

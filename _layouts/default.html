@@ -15,6 +15,9 @@
   </script>
   <script type="text/javascript"
     src="{{ '/assets/js/prepare.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+  <script type="text/javascript"
+    src="{{ '/assets/js/colored-block.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+
   {% include head-custom.html %}
 
   {% seo %}
@@ -35,12 +38,16 @@
           <a href="{{ site.github.zip_url }}" class="btn">Download as .zip</a>
           <a href="{{ site.github.tar_url }}" class="btn">Download as .tar.gz</a>
           {% endif %}
-          <a href="javascript:viewOnGitHub()" class="btn btn-github"><span class="icon"></span>View on
+          <a id="view-on-github-link" class="btn btn-github"><span class="icon"></span>View on
             GitHub</a>
+          <script>
+            const githubLink = document.getElementById('view-on-github-link');
+            githubLink.href = getViewOnGitHubUrl();
+          </script>
         </section>
       </div>
       <div class="extra-buttons">
-        <a id="back" class="btn btn-extra" href="javascript:returnToBackPage()">Back</a>
+        <a id="back-page-link" class="btn btn-extra">Back</a>
         <select id="select-lang" class="btn btn-extra select-lang" onchange="redirectToLanguage()">
           <option class="btn option-lang" value="zh-CN">
             中文（大陆简体）
@@ -63,27 +70,28 @@
             document.getElementById("select-lang").value = paths[lang_index];
           }
 
-          const back = document.getElementById('back');
+          const backPageLink = document.getElementById('back-page-link');
           if (lang_index !== -1) {
             switch (paths[lang_index]) {
               case 'zh-CN':
-                back.innerText = '返回';
+                backPageLink.innerText = '返回';
                 break;
               case 'zh-TW':
-                back.innerText = '返回';
+                backPageLink.innerText = '返回';
                 break;
               case 'fr-FR':
-                back.innerText = 'Retour';
+                backPageLink.innerText = 'Retour';
                 break;
               default:
-                back.innerText = 'Back';
+                backPageLink.innerText = 'Back';
                 break;
             }
           } else if (is_main_page) {
-            back.style.display = 'none';
+            backPageLink.style.display = 'none';
           } else {
-            back.innerText = 'Home';
+            backPageLink.innerText = 'Home';
           }
+          backPageLink.href = getReturnToBackPageUrl();
 
           const redirectToLanguage = () => {
             if (lang_index !== -1) {
@@ -101,6 +109,32 @@
       {{ content }}
     </section>
   </div>
+
+  <script>
+    addColoredBlockHandler();
+  </script>
+
+  <script type="module">
+
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    const initMermaid = () => {
+      document.querySelectorAll('pre > code.language-mermaid').forEach((code) => {
+        const pre = code.parentElement;
+        pre.classList.add('mermaid');
+        pre.textContent = code.textContent;
+      });
+
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark'
+      });
+    };
+
+    initMermaid();
+
+  </script>
+
 </body>
 
 </html>
